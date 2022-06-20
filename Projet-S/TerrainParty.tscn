@@ -1,0 +1,58 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://terrainterror/data.hterrain" type="Resource" id=1]
+[ext_resource path="res://addons/zylann.hterrain/hterrain.gd" type="Script" id=2]
+[ext_resource path="res://addons/zylann.hterrain/hterrain_texture_set.gd" type="Script" id=3]
+[ext_resource path="res://grass/Ground037_2K_NormalDX.jpg" type="Texture" id=4]
+[ext_resource path="res://grass/Ground037_2K_Color.jpg" type="Texture" id=5]
+[ext_resource path="res://Gravel/Ground007_2K_NormalDX.jpg" type="Texture" id=6]
+[ext_resource path="res://dirt/Ground030_2K_Color.jpg" type="Texture" id=7]
+[ext_resource path="res://Gravel/Ground007_2K_Color.jpg" type="Texture" id=8]
+[ext_resource path="res://path/Ground032_2K_Color.jpg" type="Texture" id=9]
+[ext_resource path="res://dirt/Ground030_2K_NormalDX.jpg" type="Texture" id=10]
+[ext_resource path="res://path/Ground032_2K_NormalDX.jpg" type="Texture" id=11]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+mode = 0
+textures = [ [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ], [ ExtResource( 4 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 11 ) ] ]
+
+[node name="Spatial" type="Spatial"]
+
+[node name="HTerrain" type="Spatial" parent="."]
+script = ExtResource( 2 )
+_terrain_data = ExtResource( 1 )
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource( 1 )
+render_layers = 1
+shader_params/u_ground_uv_scale = 20
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = true
+shader_params/u_tile_reduction = Plane( 0, 0, 0, 0 )
+
+[node name="Camera" type="Camera" parent="."]
+doppler_tracking = 2
+projection = 1
+current = true
+fov = 93.7
+size = 0.1
+
+[node name="Camera" type="Camera" parent="Camera"]
+transform = Transform( -2.26995, 0, 0.891007, 0, 1, 0, 4.45503, 0, 0.45399, 57, 16, 38 )
+current = true
+fov = 95.2
+
+[node name="DirectionalLight" type="DirectionalLight" parent="."]
+transform = Transform( -0.150829, 0, 0.98856, 0, 1, 0, -0.98856, 0, -0.150829, 70.8292, 18.4981, 30.1069 )
+
+[node name="CSGSphere" type="CSGSphere" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 13.087, 25.4221, 17.9881 )
+
+[node name="CSGBox" type="CSGBox" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 20.888, 26.4832, 34.0852 )
